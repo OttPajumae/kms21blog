@@ -1,7 +1,7 @@
 @extends('partials.layout')
 @section('title', 'Home page')
 @section('content')
-    {{ $articles->links('partials.pagination') }}
+    {{ $articles->links() }}
     <div class="flex flex-wrap">
         @foreach($articles as $article)
             <div class="basis-1/4 mb-3 ">

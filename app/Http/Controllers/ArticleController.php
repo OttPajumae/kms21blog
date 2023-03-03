@@ -15,7 +15,8 @@ class ArticleController extends Controller
      */
     public function index(): Response
     {
-        //
+        $articles = Article::latest()->paginate();
+        return response()->view('articles.index', compact('articles'));
     }
 
     /**
@@ -23,7 +24,7 @@ class ArticleController extends Controller
      */
     public function create(): Response
     {
-        //
+        return response()->view('articles.create');
     }
 
     /**
@@ -31,7 +32,11 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request): RedirectResponse
     {
-        //
+        $article = new Article($request->validated());
+//        $article->title = $request->validated('title');
+//        $article->body = $request->validated('body');
+        $article->save();
+        return redirect()->route('articles.index');
     }
 
     /**
@@ -47,7 +52,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article): Response
     {
-        //
+        return \response()->view('articles.edit', compact('article'));
     }
 
     /**
@@ -55,7 +60,11 @@ class ArticleController extends Controller
      */
     public function update(UpdateArticleRequest $request, Article $article): RedirectResponse
     {
-        //
+        $article->fill($request->validated());
+//        $article->title = $request->validated('title');
+//        $article->body = $request->validated('body');
+        $article->save();
+        return redirect()->route('articles.index');
     }
 
     /**
@@ -63,6 +72,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article): RedirectResponse
     {
-        //
+        $article->delete();
+        return redirect()->route('articles.index');
     }
 }
