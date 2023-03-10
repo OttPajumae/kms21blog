@@ -12,6 +12,20 @@
     @include('partials.nav')
     <div class="container mx-auto mt-3">
         @yield('content')
+        @isset($slot)
+
+            <div class="min-h-screen flex flex-col sm:justify-center items-center sm:pt-0">
+                <div>
+                    <a href="/">
+                        <x-application-logo class="w-20 h-20 fill-current text-white-500" />
+                    </a>
+                </div>
+
+                <div class="w-full sm:max-w-md px-6 py-4 bg-base-100 dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+                    {{ $slot }}
+                </div>
+            </div>
+        @endisset
     </div>
 </body>
 </html>

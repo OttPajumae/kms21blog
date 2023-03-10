@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Article;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,6 +14,11 @@ class ArticleSeeder extends Seeder
      */
     public function run(): void
     {
-        Article::factory(100)->create();
+        $users = User::all();
+        $articles = Article::factory(100)->make();
+        foreach ($articles as $article){
+            $article->user_id = $users->random()->id;
+            $article->save();
+        }
     }
 }

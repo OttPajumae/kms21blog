@@ -1,5 +1,5 @@
 @extends('partials.layout')
-@section('title', 'Home page')
+@section('title', 'Dashboard page')
 @section('content')
     {{ $articles->links() }}
     <div class="flex flex-wrap">
@@ -10,6 +10,7 @@
                     <div class="card-body">
                         <h2 class="card-title">{{$article->title}}</h2>
                         <p>{{$article->snippet}}</p>
+                        <p class="text-gray-600">{{$article->user->name}}</p>
                         <div class="card-actions justify-end">
                             <a class="btn btn-primary" href="{{route('public.show',['article'=>$article->id])}}">Read more</a>
                         </div>
