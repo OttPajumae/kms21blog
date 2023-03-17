@@ -10,6 +10,7 @@
                 <thead>
                     <th>Id</th>
                     <th>Title</th>
+                    <th>Author</th>
                     <th>Created At</th>
                     <th>Updated At</th>
                     <th>Actions</th>
@@ -19,6 +20,7 @@
                         <tr class="hover">
                             <td>{{$article->id}}</td>
                             <td>{{$article->title}}</td>
+                            <td>{{$article->user->name}}</td>
                             <td>{{$article->created_at}}</td>
                             <td>{{$article->updated_at}}</td>
                             <td>
